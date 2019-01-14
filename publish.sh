@@ -22,7 +22,7 @@
 ARGC=$#
 
 function help {
-  echo "Usage: $( basename $BASH_SOURCE ) <bucket> <prefix> --profile pcargill"
+  echo "Usage: $( basename $BASH_SOURCE ) <bucket> <prefix>"
   echo " - <bucket>: the Amazon S3 bucket that will store the AWS CloudFormation templates"
   echo " - <prefix>: the prefix in this bucket that will be used to store the data"
   echo ""
@@ -70,7 +70,7 @@ echo "Publishing AWS Lambda function sources"
 
 for i in *.js; do
   zip $i.tmp $i
-  aws s3 cp $i.tmp "s3://${DESTINATION}/lambda/$( basename $i .js ).zip" --profile pcargill
+  aws s3 cp $i.tmp "s3://${DESTINATION}/lambda/$( basename $i .js ).zip" 
   rm $i.tmp
 done
 cd ..
@@ -79,13 +79,13 @@ cd cfn-init
 echo ""
 echo "Publishing PowerShell Scripts"
 for i in *.ps1; do
-  aws s3 cp $i "s3://${DESTINATION}/cfn-init/$i" --profile pcargill
+  aws s3 cp $i "s3://${DESTINATION}/cfn-init/$i"
 done
 
 echo ""
 echo "Publishing Configuration Files"
 for i in *.conf; do
-  aws s3 cp $i "s3://${DESTINATION}/cfn-init/$i" --profile pcargill
+  aws s3 cp $i "s3://${DESTINATION}/cfn-init/$i"
 done
 cd ..
 
@@ -93,7 +93,7 @@ echo ""
 echo "Publishing AWS CloudFormation templates"
 for i in *.json; do
   sed -e "s#<SUBSTACKSOURCE>#${HTTP_DESTINATION}/#g" -e "s#<BUCKETNAME>#${BUCKET}#g" -e "s#<PREFIX>#${FILESPREFIX}#g" -e "s#<DESTINATION>#${DESTINATION}#g" < $i > $i.tmp
-  aws s3 cp $i.tmp "s3://${DESTINATION}/$i" --profile pcargill
+  aws s3 cp $i.tmp "s3://${DESTINATION}/$i"
   rm $i.tmp
 done
 
@@ -102,7 +102,7 @@ echo ""
 echo "Publishing AWS CloudFormation sub stacks"
 for i in *.json; do
   sed -e "s#<SUBSTACKSOURCE>#${HTTP_DESTINATION}/#g" -e "s#<BUCKETNAME>#${BUCKET}#g" -e "s#<PREFIX>#${FILESPREFIX}#g" -e "s#<DESTINATION>#${DESTINATION}#g" < $i > $i.tmp
-  aws s3 cp $i.tmp "s3://${DESTINATION}/cfn/$i" --profile pcargill
+  aws s3 cp $i.tmp "s3://${DESTINATION}/cfn/$i"
   rm $i.tmp
 done
 cd ..

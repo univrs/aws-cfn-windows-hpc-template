@@ -1,11 +1,10 @@
-# aws-cfn-windows-hpc-template
-This sample AWS CloudFormation template will launch a Windows-based HPC cluster running Windows Server 2012 R2 and supporting core infrastructure including Amazon VPC, domain controllers and bastion servers.
+# aws-cfn-windows-template
+This sample AWS CloudFormation template will launch a Windows-based cluster running Windows Server 2012 R2 and supporting core infrastructure including Amazon VPC, domain controllers and bastion servers.
 
 This document presents the steps required to deploy and get the platform running.
 
 ## What does it do, how does it work, why should I use it?
 
-This platform has been published as a companion to the "(CMP306) Dynamic, On-Demand Windows HPC Clusters On AWS" session at AWS re:Invent 2015.
 
 This session is available on:
 
@@ -16,7 +15,7 @@ Interesting tricks:
 
 * [cfn-init/configure-hpc-network.ps1](cfn-init/configure-hpc-network.ps1) does the configuration for Jumbo Frames and interrupt moderation
 * [cfn-init/post-install-hpc-pack-compute.ps1](cfn-init/post-install-hpc-pack-compute.ps1) manages physical core affinity for the compute nodes
-* [cfn-init/compute-metrics.ps1](cfn-init/compute-metrics.ps1) queries the Microsoft HPC Pack APIs and publishes Amazon CloudWatch metrics based on the queue depth
+* [cfn-init/compute-metrics.ps1](cfn-init/compute-metrics.ps1) queries the Microsoft APIs and publishes Amazon CloudWatch metrics based on the queue depth
 
 ## Prepare an Amazon EBS Snapshot for installation material
 
@@ -28,7 +27,7 @@ If you already have an instance running, create a new volume and attach it to yo
 
 The recommended settings for this volume are to use an Amazon EBS General Purpose SSD volume of 10 GiB in size.
 
-### Get Microsoft HPC Pack 2012 R2 installation
+### Get Microsoft Cluster 2012 R2 installation
 
 Download the `HPCPack2012R2-Full.zip` file from `http://www.microsoft.com/en-us/download/details.aspx?id=41630`
 
@@ -40,7 +39,7 @@ You can remove the `D:\HPCPack2012R2-Full.zip` file.
 
 ### Prepare SQL Server installation
 
-When asking for Microsoft HPC Pack to install in unattended mode, the Microsoft SQL Server installation wizard is not fully unattended, it tries to open a window on the desktop and gets stuck. To overcome this limitation we need to ask it to pre-extract the installation media and run SQL Server setup before installing Microsoft HPC Pack 2012 R2.
+When asking for Microsoft cluster to install in unattended mode, the Microsoft SQL Server installation wizard is not fully unattended, it tries to open a window on the desktop and gets stuck. To overcome this limitation we need to ask it to pre-extract the installation media and run SQL Server setup before installing Microsoft 2012 R2.
 
 Open a command prompt (or a PowerShell prompt), go to `D:\HPCPack2012R2-Full\amd64`
 
@@ -74,13 +73,13 @@ You can remove the `D:\PROWinx64.zip` file.
 
 Recommended: In Windows Server Manager (Local Server / Storage Services), select the disk associated with your Amazon EBS volume, and take it offline. This is recommended to ensure consistency os the data on the disk.
 
-In the Amazon EC2 console, select the instance that you are using, in the *Description* tab, click on `xvdf` in the *Block devices* area, and click on the volume name beside the *EBS ID* value. Click on *Actions* / *Create Snapshot*, enter `HPC Pack 2012 Installation` as a Name and as a Description; click *Create*.
+In the Amazon EC2 console, select the instance that you are using, in the *Description* tab, click on `xvdf` in the *Block devices* area, and click on the volume name beside the *EBS ID* value. Click on *Actions* / *Create Snapshot*, enter `Windows 2012 Installation` as a Name and as a Description; click *Create*.
 
 Wait for the snapshot to be created, and you are all set!
 
 ## Publish your content
 
-This GitHub reposoroty contains multiple resources (AWS Lambda Functions, PowerShell scripts, configuration files, and AWS CloudFormation templates). To run the platform you will need to publish them to one of your existing Amazon S3 buckets.
+This GitHub repository contains multiple resources (AWS Lambda Functions, PowerShell scripts, configuration files, and AWS CloudFormation templates). To run the platform you will need to publish them to one of your existing Amazon S3 buckets.
 
 Download or clone the content of this repository, and run:
 
@@ -145,11 +144,11 @@ On the head node, you can interact with the Microsoft HPC Cluster Manager, or us
 
 When starting your template, sometimes the AWS Lambda Functions fill fail and mark the entire stack as failed.
 
-Look at the AWS CloudWatch Logs Log Group that is named in the error. You may find the following error in the content: 
+Look at the AWS CloudWatch Logs Log Group that is named in the error. You may find the following error in the content:
 
 ```
-Error occured while getting the object from S3. S3 Error Code: PermanentRedirect. 
-S3 Error Message: The bucket you are attempting to access must be addressed using 
+Error occured while getting the object from S3. S3 Error Code: PermanentRedirect.
+S3 Error Message: The bucket you are attempting to access must be addressed using
 the specified endpoint. Please send all future requests to this endpoint.
 ```
 
