@@ -101,7 +101,7 @@ The script will give you the URL of the global AWS CloudFormation template to us
 
 In AWS CloudFormation, use the URL provided as an output of the publication script to start a new stack.
 
-Choose a name, then fill te parameters.
+Choose a name, then fill the parameters.
 
 *Passwords:* the template ask you for multiple passwords, that will be used in the platform. For security reasons we don't provide you with a default password.
 

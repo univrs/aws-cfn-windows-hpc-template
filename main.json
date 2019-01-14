@@ -6,7 +6,7 @@
 			"Description": "'Name' tag of the snapshot containing the Microsoft installation package",
 			"Type"       : "String",
 			"MinLength"  : "1",
-			"Default"    : "HPC Pack 2012 Installation"
+			"Default"    : "Windows Pack 2012 Installation"
 		},
 		"RDPLocation" : {
 			"Description"          : "Lockdown RDP access to the bastion host (default can be accessed from anywhere)",
@@ -18,7 +18,7 @@
 		"VPCCIDR" : {
 			"Description" : "CIDR Block for the entire VPC",
 			"Type"        : "String",
-			"Default"     : "10.12.0.0/21",
+			"Default"     : "10.0.0.0/16",
 			"AllowedPattern" : "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
 			"ConstraintDescription" : "must be a valid CIDR range of the form x.x.x.x/x."
 		},

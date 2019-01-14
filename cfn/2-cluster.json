@@ -1,6 +1,6 @@
 {
 	"AWSTemplateFormatVersion" : "2010-09-09",
-	"Description"              : "This CloudFormation stack creates a Microsoft HPC Pack 2012 R2 Cluster in an existing environment. **WARNING** This template creates two or more Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template.",
+	"Description"              : "This CloudFormation stack creates a Microsoft Pack 2012 R2 Cluster in an existing environment. **WARNING** This template creates two or more Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template.",
 	"Parameters"               : {
 		"KeyName" : {
 			"Description": "Name of an existing EC2 Key Pair",
@@ -117,8 +117,8 @@
 			"Properties": {
 				"AssumeRolePolicyDocument": {
 					"Version" : "2012-10-17",
-					"Statement": [ 
-						{ 
+					"Statement": [
+						{
 							"Effect": "Allow",
 							"Principal": { "Service": [ "ec2.amazonaws.com" ] },
 							"Action": [ "sts:AssumeRole" ]
@@ -162,8 +162,8 @@
 			"Properties": {
 				"AssumeRolePolicyDocument": {
 					"Version" : "2012-10-17",
-					"Statement": [ 
-						{ 
+					"Statement": [
+						{
 							"Effect": "Allow",
 							"Principal": { "Service": [ "ec2.amazonaws.com" ] },
 							"Action": [ "sts:AssumeRole" ]
@@ -311,7 +311,7 @@
 								"authentication" : "rolebased"
 			                },
 							"C:\\cfn\\install\\CleanupFiles.cmd" : {
-								"content": { 
+								"content": {
 									"Fn::Join" : ["\n", [
 										"DEL c:\\cfn\\install\\hpc-user-info.conf"
 									] ]
@@ -383,7 +383,7 @@
 					{ "DeviceName" : "xvdf", "Ebs" : { "SnapshotId": { "Ref": "SnapshotID" }, "VolumeSize": 100, "VolumeType" : "gp2", "DeleteOnTermination": true } }
 				],
 				"UserData": {
-					"Fn::Base64": { 
+					"Fn::Base64": {
 						"Fn::Join": [ "", [
 							"<script>\n",
 							"cfn-init.exe -v -c config -s ", {"Ref": "AWS::StackId"}, " -r HeadNode ", " --region ", {"Ref": "AWS::Region"}, "\n",
@@ -469,7 +469,7 @@
 								"authentication" : "rolebased"
 			                },
 							"C:\\cfn\\install\\CleanupFiles.cmd" : {
-								"content": { 
+								"content": {
 									"Fn::Join" : ["\n", [
 										"DEL c:\\cfn\\install\\hpc-user-info.conf"
 									] ]
@@ -532,7 +532,7 @@
 					{ "DeviceName" : "xvdf", "Ebs" : { "SnapshotId": { "Ref": "SnapshotID" }, "VolumeSize": 100, "VolumeType" : "gp2", "DeleteOnTermination": true } }
 				],
 				"UserData": {
-					"Fn::Base64": { 
+					"Fn::Base64": {
 						"Fn::Join": [ "", [
 							"<script>\n",
 							"cfn-init.exe -v -c config -s ", {"Ref": "AWS::StackId"}, " -r ComputeNode ", " --region ", {"Ref": "AWS::Region"}, "\n",

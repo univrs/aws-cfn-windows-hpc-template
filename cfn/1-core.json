@@ -1,6 +1,6 @@
 {
 	"AWSTemplateFormatVersion" : "2010-09-09",
-	"Description"              : "This CloudFormation stack creates the core infrastructure (network, AD, Bastion) for the deployment of Microsoft HPC Pack 2012 R2. **WARNING** This template creates two Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template.",
+	"Description"              : "This CloudFormation stack creates the core infrastructure (network, AD, Bastion) for the deployment of Microsoft Pack 2012 R2. **WARNING** This template creates two Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template.",
 	"Parameters"               : {
 		"KeyName" : {
 			"Description": "Name of an existing EC2 Key Pair",
@@ -107,8 +107,8 @@
 			"Properties": {
 				"AssumeRolePolicyDocument": {
 					"Version" : "2012-10-17",
-					"Statement": [ 
-						{ 
+					"Statement": [
+						{
 							"Effect": "Allow",
 							"Principal": { "Service": [ "ec2.amazonaws.com" ] },
 							"Action": [ "sts:AssumeRole" ]
@@ -384,7 +384,7 @@
 								"authentication" : "rolebased"
 			                },
 							"C:\\cfn\\install\\CleanupFiles.cmd" : {
-								"content": { 
+								"content": {
 									"Fn::Join" : ["\n", [
 										"DEL c:\\cfn\\install\\local-admin-password.conf"
 									] ]
@@ -442,7 +442,7 @@
 					{ "AssociatePublicIpAddress": "true", "DeviceIndex": 0, "SubnetId": { "Ref" : "PublicSubnet" }, "GroupSet": [ { "Ref": "BastionSecurityGroup" } ] }
 				],
 				"UserData": {
-					"Fn::Base64": { 
+					"Fn::Base64": {
 						"Fn::Join": [ "", [
 							"<script>\n",
 							"cfn-init.exe -v -c config -s ", {"Ref": "AWS::StackId"}, " -r Bastion ", " --region ", {"Ref": "AWS::Region"}, "\n",
@@ -541,7 +541,7 @@
 								"authentication" : "rolebased"
 			                },
 							"C:\\cfn\\install\\CleanupFiles.cmd" : {
-								"content": { 
+								"content": {
 									"Fn::Join" : ["\n", [
 										"DEL c:\\cfn\\install\\hpc-user-info.conf",
 										"DEL c:\\cfn\\install\\local-admin-password.conf",
@@ -613,7 +613,7 @@
 					{ "DeviceName" : "/dev/sda1", "Ebs" : { "VolumeType" : "gp2" } }
 				],
 				"UserData": {
-					"Fn::Base64": { 
+					"Fn::Base64": {
 						"Fn::Join": [ "", [
 							"<script>\n",
 							"cfn-init.exe -v -c config -s ", {"Ref": "AWS::StackId"}, " -r DomainController ", " --region ", {"Ref": "AWS::Region"}, "\n",
@@ -639,7 +639,7 @@
 			}
 		},
 
-		"VPCDHCPOptionsAssoc": { 
+		"VPCDHCPOptionsAssoc": {
 			"DependsOn" : ["DomainControllerWaitCondition"],
 			"Type" : "AWS::EC2::VPCDHCPOptionsAssociation",
 			"Properties" : {
