@@ -45,7 +45,7 @@ Resources:
       Role: !GetAtt
         - FindImageRole
         - Arn
-      Runtime: nodejs4.3
+      Runtime: nodejs8.10
       Timeout: '25'
   FindImage:
     Type: 'Custom::FindImage'
