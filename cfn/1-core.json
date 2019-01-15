@@ -5,7 +5,7 @@
 		"KeyName" : {
 			"Description": "Name of an existing EC2 Key Pair",
 			"Type"       : "String",
-			"Default"    : ""
+			"Default"    : "can-fmsdev"
 		},
 		"RDPLocation" : {
 			"Description"          : "Lockdown RDP access to the bastion host (default can be accessed from anywhere)",
@@ -17,7 +17,7 @@
 		"VPCCIDR" : {
 			"Description"   : "CIDR Block for the entire VPC",
 			"Type"          : "String",
-			"Default"       : "10.0.0.0/16",
+			"Default"       : "10.6.15.0/21",
 			"AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})"
 		},
 		"PublicSubnetCIDR" : {
@@ -28,7 +28,7 @@
 		},
 		"DomainDNSName" : {
 			"Description"   : "Fully qualified domain name (FQDN) of the forest root domain e.g. corp.example.",
-			"Default"       : "awslab.local",
+			"Default"       : "fsdilab.local",
 			"Type"          : "String",
 			"AllowedPattern": "[a-zA-Z0-9]+\\..*"
 		},
@@ -37,7 +37,7 @@
 			"Type"          : "String",
 			"MinLength"     : "1",
 			"MaxLength"     : "15",
-			"Default"       : "AWSLAB",
+			"Default"       : "FSDILAB",
 			"AllowedPattern": "[a-zA-Z0-9]+"
 		},
 		"HPCUserName" : {
@@ -45,7 +45,7 @@
 			"Type"          : "String",
 			"MinLength"     : "1",
 			"MaxLength"     : "255",
-			"Default"       : "HPCUser",
+			"Default"       : "CUser",
 			"AllowedPattern": "[a-zA-Z0-9]+"
 		},
 		"BastionAdminPassword" : {
@@ -89,12 +89,12 @@
 		"BastionInstanceType" : {
 			"Description": "Instance type to use for the Bastion Instance",
 			"Type"       : "String",
-			"Default"    : "t2.large"
+			"Default"    : "m4.2xlarge"
 		},
 		"DomainControllerInstanceType" : {
 			"Description": "Instance type to use for the Domain Controller Instance",
 			"Type"       : "String",
-			"Default"    : "t2.large"
+			"Default"    : "m4.2xlarge"
 		}
 	},
 	"Conditions": {

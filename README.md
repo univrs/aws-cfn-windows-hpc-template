@@ -106,7 +106,7 @@ Choose a name, then fill the parameters.
 *Passwords:* the template ask you for multiple passwords, that will be used in the platform. For security reasons we don't provide you with a default password.
 
 * `BastionAdminPassword`: this password will be used to connect with the local administrator account to the bastion host
-* `HPCUserPassword`: this password will be used to connect to the head-node, with the `AWSLAB\HPCUser` account
+* `CUserPassword`: this password will be used to connect to the head-node, with the `FSDILAB\CUser` account
 * `AdministratorPassword`: this password will be the domain administrator password (you should not have to use it)
 * `RestoreModePassword`: this password will be the domain controller recovery mode (you should not have to use it)
 
