@@ -40,8 +40,8 @@
 			"Default"       : "FSDILAB",
 			"AllowedPattern": "[a-zA-Z0-9]+"
 		},
-		"HPCUserName" : {
-			"Description"   : "Logon Name of the HPC User user created for this installation",
+		"CUserName" : {
+			"Description"   : "Logon Name of the User user created for this installation",
 			"Type"          : "String",
 			"MinLength"     : "1",
 			"MaxLength"     : "255",
@@ -72,7 +72,7 @@
 			"AllowedPattern": "(?=^.{6,255}$)((?=.*\\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))^.*",
 			"NoEcho"        : "True"
 		},
-		"HPCUserPassword" : {
+		"CUserPassword" : {
 			"Description"   : "Password for the HPC User account. Must be at least 8 characters containing letters, numbers and symbols",
 			"Type"          : "String",
 			"MinLength"     : "8",

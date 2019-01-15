@@ -39,8 +39,8 @@
 			"Default"       : "FSDILAB",
 			"AllowedPattern": "[a-zA-Z0-9]+"
 		},
-		"HPCUserName" : {
-			"Description"   : "Logon Name of the HPC User user created for this installation",
+		"CUserName" : {
+			"Description"   : "Logon Name of the User user created for this installation",
 			"Type"          : "String",
 			"MinLength"     : "1",
 			"MaxLength"     : "255",
@@ -266,8 +266,8 @@
 								"context" : {
 									"DomainDNSName" : { "Ref" : "DomainDNSName" },
 									"DomainNetBIOSName": { "Ref" : "DomainNetBIOSName" },
-									"HPCUserName" : { "Ref" : "HPCUserName" },
-									"HPCUserPassword": { "Ref" : "HPCUserPassword" }
+									"CUserName" : { "Ref" : "CUserName" },
+									"CUserPassword": { "Ref" : "CUserPassword" }
 								}
 							},
 							"C:\\cfn\\install\\sql-config.conf" : {
@@ -436,8 +436,8 @@
 								"context" : {
 									"DomainDNSName" : { "Ref" : "DomainDNSName" },
 									"DomainNetBIOSName": { "Ref" : "DomainNetBIOSName" },
-									"HPCUserName" : { "Ref" : "HPCUserName" },
-									"HPCUserPassword": { "Ref" : "HPCUserPassword" }
+									"CUserName" : { "Ref" : "CUserName" },
+									"CUserPassword": { "Ref" : "CUserPassword" }
 								}
 							},
 							"C:\\cfn\\install\\configure-network.ps1" : {
