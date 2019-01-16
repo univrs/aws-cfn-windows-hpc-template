@@ -68,7 +68,7 @@
 			"Properties" : {
 				"ServiceToken": { "Fn::GetAtt" : [ "FindSnapshotFunction", "Arn" ] },
 				"SnapshotName": { "Ref": "SnapshotName" }
-			}
+			 }
 	    }
 	},
 	"Outputs": {
