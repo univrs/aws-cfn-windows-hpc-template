@@ -134,9 +134,9 @@ The template will get one single output:
 
 Use the output `Bastion` from the main template to connect in Remote Desktop Protocol to the bastion host. Use the `.\Administrator` account and the password you specified as the `BastionAdminPassword` parameter to connect.
 
-Once on the bastion host, run `MSTSC.EXE` (Microsoft Remote Desktop Connection) to connect to the machine named `head-node`. As all cluster machines are in a domain, and the bastion host is configured to use the DNS servers of that domain, you will connect to the head node instance with the name `head-node.awslab.local`. Use `AWSLAB\HPCUser` as a user name, and the password you entered as the `HPCUserPassword` parameter to connect.
+Once on the bastion host, run `MSTSC.EXE` (Microsoft Remote Desktop Connection) to connect to the machine named `head-node`. As all cluster machines are in a domain, and the bastion host is configured to use the DNS servers of that domain, you will connect to the head node instance with the name `head-node.fsdilab.local`. Use `FSDILAB\CUser` as a user name, and the password you entered as the `CUserPassword` parameter to connect.
 
-On the head node, you can interact with the Microsoft HPC Cluster Manager, or use `mpiexec` or PowerShell to start using the cluster..
+On the head node, you can interact with the Microsoft Cluster Manager, or use `mpiexec` or PowerShell to start using the cluster..
 
 ## FAQ
 
