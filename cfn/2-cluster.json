@@ -5,24 +5,24 @@
 		"KeyName" : {
 			"Description": "Name of an existing EC2 Key Pair",
 			"Type"       : "String",
-			"Default"    : ""
+			"Default"    : "can-fmsdev"
 		},
 		"SnapshotID" : {
 			"Description"          : "Snapshot Id of the HPC Installation data",
 			"Type"                 : "String",
-			"AllowedPattern"       : "snap-([0-9a-fA-F]{8})",
+			"AllowedPattern"       : "snap-([0-9a-fA-F]+)",
 			"ConstraintDescription": "must be a valid snapshot ID."
 		},
 		"ClusterSubnetID" : {
-			"Description"          : "Subnet Id of the HPC cluster",
+			"Description"          : "Subnet Id of the cluster",
 			"Type"                 : "String",
-			"AllowedPattern"       : "subnet-([0-9a-fA-F]{8})",
+			"AllowedPattern"       : "subnet-([0-9a-fA-F]+)",
 			"ConstraintDescription": "must be a valid subnet ID."
 		},
 		"ClusterSecurityGroupID" : {
-			"Description"          : "Security Group Id of the HPC cluster",
+			"Description"          : "Security Group Id of the cluster",
 			"Type"                 : "String",
-			"AllowedPattern"       : "sg-([0-9a-fA-F]{8})",
+			"AllowedPattern"       : "sg-([0-9a-fA-F]+)",
 			"ConstraintDescription": "must be a valid security group ID."
 		},
 		"DomainDNSName" : {
@@ -47,7 +47,7 @@
 			"Default"       : "CUser",
 			"AllowedPattern": "[a-zA-Z0-9]+"
 		},
-		"HPCUserPassword" : {
+		"CUserPassword" : {
 			"Description"   : "Password for the Cluster User account. Must be at least 8 characters containing letters, numbers and symbols",
 			"Type"          : "String",
 			"MinLength"     : "8",
@@ -58,7 +58,7 @@
 		"AWSAmiId" : {
 			"Description"          : "Identifier of the Amazon Machine Image to use for the platforms (all machines are started using the same AMI). We use Microsoft Windows Server 2012 R2 Base 64bits.",
 			"Type"                 : "String",
-			"AllowedPattern"       : "ami-([0-9a-fA-F]{8})",
+			"Default"              : "ami-050202fb72f001b47",
 			"ConstraintDescription": "must be a valid Amazon Machine Image (ami-xxxxxxxx)."
 		},
 		"HeadNodeInstanceType" : {
@@ -339,7 +339,7 @@
 								"waitAfterCompletion": "forever"
 							},
 							"03-add-user": {
-								"command": { "Fn::Join" : ["", [ "powershell.exe -ExecutionPolicy Unrestricted C:\\cfn\\install\\add-admin-user.ps1 -LogonName ", { "Ref": "DomainNetBIOSName" }, "/", { "Ref": "HPCUserName" } ] ] },
+								"command": { "Fn::Join" : ["", [ "powershell.exe -ExecutionPolicy Unrestricted C:\\cfn\\install\\add-admin-user.ps1 -LogonName ", { "Ref": "DomainNetBIOSName" }, "/", { "Ref": "CUserName" } ] ] },
 								"waitAfterCompletion": "0"
 							},
 							"04-initialize-d-drive": {
@@ -493,7 +493,7 @@
 								"waitAfterCompletion": "forever"
 							},
 							"02-add-user": {
-								"command": { "Fn::Join" : ["", [ "powershell.exe -ExecutionPolicy Unrestricted C:\\cfn\\install\\add-admin-user.ps1 -LogonName ", { "Ref": "DomainNetBIOSName" }, "/", { "Ref": "HPCUserName" } ] ] },
+								"command": { "Fn::Join" : ["", [ "powershell.exe -ExecutionPolicy Unrestricted C:\\cfn\\install\\add-admin-user.ps1 -LogonName ", { "Ref": "DomainNetBIOSName" }, "/", { "Ref": "CUserName" } ] ] },
 								"waitAfterCompletion": "0"
 							},
 							"03-initialize-d-drive": {

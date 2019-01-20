@@ -113,7 +113,7 @@
 					"AdministratorPassword": { "Ref": "AdministratorPassword" },
 					"RestoreModePassword": { "Ref": "RestoreModePassword" },
 					"BastionAdminPassword": { "Ref": "BastionAdminPassword" },
-					"HPCUserPassword": { "Ref": "CUserPassword" },
+					"CUserPassword": { "Ref": "CUserPassword" },
 					"RDPLocation": { "Ref": "RDPLocation" },
 					"VPCCIDR": { "Ref": "VPCCIDR" }
 				}
@@ -129,7 +129,7 @@
 					"SnapshotID": { "Fn::GetAtt": [ "Snapshot", "Outputs.SnapshotId"] },
 					"ClusterSubnetID": { "Fn::GetAtt": [ "Core", "Outputs.ClusterSubnetID"] },
 					"ClusterSecurityGroupID": { "Fn::GetAtt": [ "Core", "Outputs.ClusterSecurityGroupID"] },
-					"HPCUserPassword": { "Ref": "CUserPassword" },
+					"CUserPassword": { "Ref": "CUserPassword" },
 					"HeadNodeInstanceType": { "Ref": "HeadNodeInstanceType" },
 					"ComputeNodeInstanceType": { "Ref": "ComputeNodeInstanceType" },
 					"ClusterPlacementGroup": { "Ref": "ClusterPlacementGroup" },

@@ -73,7 +73,7 @@
 			"NoEcho"        : "True"
 		},
 		"CUserPassword" : {
-			"Description"   : "Password for the HPC User account. Must be at least 8 characters containing letters, numbers and symbols",
+			"Description"   : "Password for the User account. Must be at least 8 characters containing letters, numbers and symbols",
 			"Type"          : "String",
 			"MinLength"     : "8",
 			"MaxLength"     : "32",
@@ -83,7 +83,7 @@
 		"AWSAmiId" : {
 			"Description"          : "Identifier of the Amazon Machine Image to use for the platforms (all machines are started using the same AMI). We use Microsoft Windows Server 2012 R2 Base 64bits.",
 			"Type"                 : "String",
-			"AllowedPattern"       : "ami-([0-9a-fA-F]{8})",
+			"Default"              : "ami-050202fb72f001b47",
 			"ConstraintDescription": "must be a valid Amazon Machine Image (ami-xxxxxxxx)."
 		},
 		"BastionInstanceType" : {
@@ -503,8 +503,8 @@
 								"context" : {
 									"DomainDNSName" : { "Ref" : "DomainDNSName" },
 									"DomainNetBIOSName": { "Ref" : "DomainNetBIOSName" },
-									"HPCUserName" : { "Ref" : "HPCUserName" },
-									"HPCUserPassword": { "Ref" : "HPCUserPassword" }
+									"CUserName" : { "Ref" : "CUserName" },
+									"CUserPassword": { "Ref" : "CUserPassword" }
 								}
 							},
 			                "c:\\cfn\\install\\domain-info.conf": {

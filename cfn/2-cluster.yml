@@ -12,17 +12,17 @@ Parameters:
   SnapshotID:
     Description: Snapshot Id of the Cluster Installation data
     Type: String
-    AllowedPattern: 'snap-([0-9a-fA-F]{8})'
+    AllowedPattern: 'snap-([0-9a-fA-F]+)'
     ConstraintDescription: must be a valid snapshot ID.
   ClusterSubnetID:
     Description: Subnet Id of the Cluster cluster
     Type: String
-    AllowedPattern: 'subnet-([0-9a-fA-F]{8})'
+    AllowedPattern: 'subnet-([0-9a-fA-F]+)'
     ConstraintDescription: must be a valid subnet ID.
   ClusterSecurityGroupID:
     Description: Security Group Id of the cluster
     Type: String
-    AllowedPattern: 'sg-([0-9a-fA-F]{8})'
+    AllowedPattern: 'sg-([0-9a-fA-F]+)'
     ConstraintDescription: must be a valid security group ID.
   DomainDNSName:
     Description: >-
@@ -63,7 +63,7 @@ Parameters:
       machines are started using the same AMI). We use Microsoft Windows Server
       2012 R2 Base 64bits.
     Type: String
-    AllowedPattern: 'ami-([0-9a-fA-F]{8})'
+    AllowedPattern: 'ami-([0-9a-fA-F]+)'
     ConstraintDescription: must be a valid Amazon Machine Image (ami-xxxxxxxx).
   HeadNodeInstanceType:
     Description: Instance type to use for the Head Node Instance
@@ -294,7 +294,7 @@ Resources:
                     C:\cfn\install\add-admin-user.ps1 -LogonName
                   - !Ref DomainNetBIOSName
                   - /
-                  - !Ref HPCUserName
+                  - !Ref CUserName
               waitAfterCompletion: '0'
             04-initialize-d-drive:
               command: !Join
