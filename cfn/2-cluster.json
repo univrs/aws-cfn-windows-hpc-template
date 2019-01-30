@@ -64,12 +64,12 @@
 		"HeadNodeInstanceType" : {
 			"Description": "Instance type to use for the Head Node Instance",
 			"Type"       : "String",
-			"Default"    : "m4.2xlarge"
+			"Default"    : "r5.2xlarge"
 		},
 		"ComputeNodeInstanceType" : {
 			"Description": "Instance type to use for the Compute Node Instance",
 			"Type"       : "String",
-			"Default"    : "m4.2xlarge"
+			"Default"    : "r5.2xlarge"
 		},
 		"ClusterPlacementGroup" : {
 			"Description": "Name of an existing placement group for the cluster nodes (no placement group if empty)",
@@ -195,20 +195,6 @@
 				"Path" : "/",
 				"Roles": [ { "Ref": "S3AccessRole" } ]
 			}
-		},
-
-		"ComputeNodeWaitCondition" : {
-			"Type" : "AWS::CloudFormation::WaitCondition",
-			"DependsOn" : ["ComputeNodes"],
-			"Properties" : {
-				"Handle" : {"Ref" : "ComputeNodeWaitHandle"},
-				"Timeout" : "7200",
-				"Count" : { "Ref": "ComputeNodeInstanceCount" }
-			}
-		},
-
-		"ComputeNodeWaitHandle" : {
-			"Type" : "AWS::CloudFormation::WaitConditionHandle"
 		},
 
 		"HeadNodeWaitCondition" : {
@@ -510,10 +496,6 @@
 							},
 							"06-cleanup-files": {
 								"command": "C:\\cfn\\install\\CleanupFiles.cmd",
-								"waitAfterCompletion": "0"
-							},
-							"07-signal-success": {
-								"command": { "Fn::Join": ["", [ "cfn-signal.exe -e 0 \"", { "Fn::Base64" : { "Ref" : "ComputeNodeWaitHandle" } },"\"" ] ] },
 								"waitAfterCompletion": "0"
 							}
 						}
